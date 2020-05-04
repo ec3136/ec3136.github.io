@@ -1,0 +1,172 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+     <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+     <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+     <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+     <link rel="manifest" href="favicon_io/site.webmanifest"> 
+
+</head>
+    <body class="container">
+        <div class="base" id="curvedtopbordersonly">
+          <div class="child">
+              <canvas width="500" height="500" id="game"></canvas>
+          </div>
+        </div>
+    </body>
+    <script>
+        var canvas = document.getElementById('game');
+        var ctx = canvas.getContext("2d");
+        
+        var grid = 16;
+        var count = 0;
+          
+        var snake = {
+          x: 0,
+          y: 0,
+          // snake velocity. moves one grid length every frame in either the x or y direction
+          dx: grid,
+          dy: 0,
+          // keep track of all grids the snake body occupies
+          cells: [],
+          // initial length of the snake - increments when it "eats" an apple
+          snakeCells: 4
+        };
+        var apple = {
+          x: getRandomInt(0, 25) * grid,
+          y: getRandomInt(0,25)*grid
+        }
+    
+        function getRandomInt(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;}
+
+        function resetGame() { 
+          snake.x = 160;
+          snake.y = 160;
+          snake.cells = [];
+          snake.snakeCells = 4;
+          snake.dx = grid;
+          snake.dy = 0;
+          apple.x = getRandomInt(0, 25) * grid;
+          apple.y = getRandomInt(0, 25) * grid;
+        }
+        // game loop
+        function gameLoop() {
+          requestAnimationFrame(gameLoop);
+        
+
+          //  the following functions will slow the number of frames per second 
+          /*/ 30fps (hard mode)
+          if (++count<2) {
+            return;}*/
+
+          // default speed (16 fps) (medium)
+          if (++count < 4) {
+            return;}
+
+          /*/ (10 fps) (easy)
+          if (++count < 6) {
+            return;}*/
+          count = 0;
+
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+        
+          // move snake by it's velocity
+          snake.x += snake.dx;
+          snake.y += snake.dy;
+          
+          // end the game if the snake runs into walls
+          if (((snake.x<0)||(snake.x >= canvas.width))||((snake.y<0)||(snake.y>=canvas.height))){
+            alert("Game Over!");
+            resetGame();}
+
+          // track snake's movement
+          snake.cells.unshift({x: snake.x, y: snake.y});
+        
+          // "pop" snake cells off the end of the array that is the snake's body
+          if (snake.cells.length > snake.snakeCells) {
+            snake.cells.pop();
+          }
+        
+          // draw apple
+          ctx.fillStyle = "rgb(212, 0, 95)";
+          ctx.fillRect(apple.x, apple.y, grid, grid);
+        
+          // draw snake one cell at a time
+          ctx.fillStyle = "rgb(0, 0, 0)";
+          snake.cells.forEach(function(cell, index) {
+            
+            //grid-1 to allow gaps between snake body cells  
+            ctx.fillRect(cell.x, cell.y, grid-1, grid-1);  
+        
+            // snake ate apple
+            if (cell.x === apple.x && cell.y === apple.y) {
+              snake.snakeCells=snake.snakeCells+1; // append a grid element to the end of the snake 
+              // randomly generate the apple at a new location once it has been "eaten"
+              apple.x = getRandomInt(0, 25) * grid;
+              apple.y = getRandomInt(0, 25) * grid;
+            }
+            
+            // check collision with remaining cells in snake's body - if YES, reset 
+            for (var i = index + 1; i < snake.cells.length; i++) {
+              // if snake runs into tail OR snake reaches an edge ==reset game
+              if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+                alert("Game Over!");
+                resetGame();
+              }
+            }
+          });
+        }
+        
+        // take input from keyboard to control movement of snake (up, down, left, right)
+        document.addEventListener('keydown', function(e) {
+          // left arrow key moves the snake left (-1 grid space)
+          if (e.which === 37 && snake.dx === 0) {
+            snake.dx = -grid;
+            snake.dy = 0;
+          }
+          // left arrow - if already moving to the left, increase speed 
+          else if (e.which===37 && snake.dx === -grid) { 
+            snake.dx = -2*grid;
+            snake.dy = 0;
+          }
+          // up arrow key moves the snake up (-1 grid space)
+          else if (e.which === 38 && snake.dy === 0) {
+            snake.dy = -grid;
+            snake.dx = 0;
+          }
+          // up arrow - if already moving up, increase speed
+          else if (e.which === 38 && snake.dy === -grid) {
+            snake.dy = -2*grid;
+            snake.dx = 0;
+          }
+          // right arrow key
+          else if (e.which === 39 && snake.dx === 0) {
+            snake.dx = grid;
+            snake.dy = 0;
+          }
+          // right arrow key - if already moving right, increase speed
+          else if (e.which === 39 && snake.dx === grid) {
+            snake.dx = 2*grid;
+            snake.dy = 0;
+          }
+          // down arrow key 
+          else if (e.which === 40 && snake.dy === 0) {
+            snake.dy = grid;
+            snake.dx = 0;
+          }
+          // down arrow key - if already moving down, increase speed
+          else if (e.which === 40 && snake.dy === grid) {
+            snake.dy = 2*grid;
+            snake.dx = 0;
+          }
+        });
+        
+        // initiate the loop 
+        requestAnimationFrame(gameLoop);
+    </script>
+</html>

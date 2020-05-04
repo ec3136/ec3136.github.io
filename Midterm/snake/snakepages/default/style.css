@@ -1,0 +1,88 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background: url("https://media2.giphy.com/media/U3qYN8S0j3bpK/giphy.webp?cid=790b76119b80dadec7df9030ec6f4f38fc34b2e41e469c0a&rid=giphy.webp"); }
+  * { padding: 0; 
+margin: 0; }    
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;}
+  canvas {
+background: #84b378;
+display: block; 
+margin: 0 auto; 
+border: inset 3px;}
+  div { 
+overflow: hidden;
+box-sizing: border-box;}
+  .container {
+display: flex;
+/* background of webpage */
+justify-content:center;
+padding-top: 0px;
+align-items:flex-end;}
+  .base {
+background-color: #e7e2e2;
+display: flex;
+height:90vh;
+width:700px;
+justify-content:center;
+align-items:center;}
+  .child { 
+background-color: #858080;
+display:flex;
+justify-content: center;
+align-items:center;
+height:80vh;
+width:600px;
+border:groove 3px;
+flex-direction:column;}
+  .childschild { 
+background-color: #bdb8b8;
+border:inset 3px;
+height:10vh;
+width:20vw;}
+  .gamecontainer {
+background-color: #379c64;
+display:flex;
+justify-content: center;
+height:70vh;
+border: inset 3px;
+text-align:center;}
+  /* now onto the ids */
+  #curvedbottomrightborder {
+border-top-left-radius:8px;
+border-top-right-radius:8px;
+border-bottom-left-radius:8px;
+border-bottom-right-radius: 40px;}
+  #curvedtopbordersonly { 
+border-top-left-radius:8px;
+border-top-right-radius:8px;}
+
+#confirm {
+    display: none;
+    background-color: #514E61;
+    color: #FFFFFF;
+    border: 1px solid #aaa;
+    position: fixed;
+    width: 250px;
+    left: 50%;
+    margin-left: -100px;
+    padding: 6px 8px 8px;
+    box-sizing: border-box;
+    text-align: center;
+ }
+ #confirm button {
+    background-color: #48E5DA;
+    display: inline-block;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 5px;
+    text-align: center;
+    width: 80px;
+    cursor: pointer;
+ }
+ #confirm .message {
+    text-align: left;
+ }

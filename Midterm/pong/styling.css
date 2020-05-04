@@ -1,0 +1,129 @@
+/* styling of basic components */
+html { 
+    background: url("https://media2.giphy.com/media/U3qYN8S0j3bpK/giphy.webp?cid=790b76119b80dadec7df9030ec6f4f38fc34b2e41e469c0a&rid=giphy.webp");}
+body { 
+  margin:0;}
+div {
+    overflow: hidden;
+    box-sizing: border-box;}
+a { 
+    text-decoration:none;
+    text-transform:none;
+    color:black;}
+p { 
+      border: solid black 2px;
+      max-width:75px;
+      padding:3px;}
+blockquote {
+        width: 500px;
+        font: 3.65em CallunaRegular;
+        letter-spacing: .075em;
+        float:auto;
+        padding: 0;
+        margin: 0;}
+blockquote:first-line {
+            font: 1.45em "Sketch Block";}
+blockquote:first-letter {
+            font-size: 2.2em;
+            text-transform: lowercase;
+            float: left;
+            line-height: 0.52em;
+            margin-right: -20px;
+            position: relative;}
+   
+  /* classes in order from back to front */
+.container {
+    display: flex;
+    /* background of webpage */
+    justify-content:center;
+    padding-top: 85px;
+    flex-direction:row;}
+.base {
+    background-color: #e7e2e2;
+    display: flex;
+    height:90vh;
+    width:700px;
+    justify-content:center;
+    align-items:center;}
+.child { 
+    background-color: #858080;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    height:80vh;
+    width:600px;
+    border:groove 3px;}
+.gamecontainer {
+    background-color: #379c64;
+    display:flex;
+    justify-content: center;
+    height:70vh;
+    border: inset 3px;
+    text-align:center;}
+.screen { 
+      background-color: #84b378;
+      display:flex;
+      justify-content: center;
+      align-items:center;
+      height:500px;
+      width:500px;
+      border:groove 3px;
+      flex-direction:column;}
+.box {
+          width: 350px;
+          margin: 0px auto;
+          position: relative;
+          display:flex;
+          flex-direction:column;}
+.subbox { 
+          width: 350px;
+          margin: 10px auto;
+          position: relative;
+          display:flex;
+          flex-direction:column;
+          justify-content:space-between;
+          align-content:center;}
+.subbox2 { 
+            width: 100%;
+            margin: 10px auto;
+            position: relative;
+            display:flex;
+            justify-content:center;
+            flex-flow: column;
+            text-align:center;
+            align-items:center;}
+    
+#backbutton { 
+    color:rgb(255,255,255);
+}  
+#curvedtopbordersonly { 
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;}         
+        
+/*interactions*/
+p:hover {
+                background-color:#8178b3;}
+  
+  @font-face {
+                font-family: 'Sketch Block';
+                src: url('http://tangledindesign.com/codepen/fonts/sketch_block-webfont.eot');
+                src: url('http://tangledindesign.com/codepen/fonts/sketch_block-webfont.eot?#iefix') format('embedded-opentype'),
+                     url('http://tangledindesign.com/codepen/fonts/sketch_block-webfont.woff') format('woff'),
+                     url('http://tangledindesign.com/codepen/fonts/sketch_block-webfont.ttf') format('truetype'),
+                     url('http://tangledindesign.com/codepen/fonts/sketch_block-webfont.svg#SketchBlockBold') format('svg');}
+  @font-face {
+                font-family: 'Museo 700';
+                src: url('http://tangledindesign.com/codepen/fonts/Museo700-Regular-webfont.eot');
+                src: url('http://tangledindesign.com/codepen/fonts/Museo700-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+                     url('http://tangledindesign.com/codepen/fonts/Museo700-Regular-webfont.woff') format('woff'),
+                     url('http://tangledindesign.com/codepen/fonts/Museo700-Regular-webfont.ttf') format('truetype'),
+                     url('http://tangledindesign.com/codepen/fonts/Museo700-Regular-webfont.svg#SketchBlockBold') format('svg');}
+  @font-face {
+                font-family: 'CallunaRegular';
+                src: url('http://tangledindesign.com/codepen/fonts/Calluna-Regular-webfont.eot');
+                src: url('http://tangledindesign.com/codepen/fonts/Calluna-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+                     url('http://tangledindesign.com/codepen/fonts/Calluna-Regular-webfont.woff') format('woff'),
+                     url('http://tangledindesign.com/codepen/fonts/Calluna-Regular-webfont.ttf') format('truetype'),
+                     url('http://tangledindesign.com/codepen/fonts/Calluna-Regular-webfont.svg#CallunaRegular') format('svg');}
+              
+       

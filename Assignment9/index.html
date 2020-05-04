@@ -1,0 +1,110 @@
+<!doctype html>
+<html class="no-js" lang="en"> 
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+  <meta charset="utf-8">
+  <title>Pair Programming Project Proposal</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/main.css" />
+
+</head>
+
+<body>
+    <!-- Header Slide -->
+	<div class="slide">
+        <h1>
+            Exploratory Adventure Game
+        </h1>
+        <h3>
+            by Clare + Erin 
+        </h3>                
+    </div>
+    <!-- Slide 2 -->
+    <div class="slide">
+        <h2>
+            Concept Formulation
+        </h2>
+        <ul id="ul">
+            <li class="intro">
+               Basic Overview Elements:
+            </li>
+            <li>
+                Exploratory map orientation.
+            </li>
+            <li>
+                Discover clues along a path by interacting with environment and characters.
+            </li>
+            <li>
+                Scroll onto each new discovered area. 
+            </li>
+            <li>
+                Use the clues to ultimately find the missing character.
+            </li>
+        </ul>
+        <div class="imagecontainer">
+            <img src="img/conceptformulation.jpg"/>
+        </div>
+
+    </div>
+    <!-- Slide 3 -->
+    <div class="slide">
+        <h2>
+            Main Considerations:
+        </h2>
+        <ul id="ul">
+            <li class="intro">
+                <li>Main Map Menu vs. Scroll Through </li>
+                <ul>
+                    <li> need to visit each page in order, retrace steps in order</li>
+                    <li> visit each page directly or follow scroll through path</li>
+                </ul>
+            </li>
+            <li>
+                Should clues be revealed by clicks or hovers?
+                <ul>
+                    <li> items that are clickable are highlighted by an overlay when they are hovered over </li>
+                    <li> messages display when clicked </li>
+                </ul>
+            </li>
+            <li>
+                First person view or third person? 
+            </li>
+            <li>
+                Should there be a single main character that the user plays as, or a small group 
+                <ul>
+                    <li>(this could introduce different perspectives/ interpretations of the clues that the user has to then sort through?)</li>
+                </ul>
+            </li>       
+        </ul>
+    </div>
+    <!-- Slide 4-->
+    <div class="slide">
+        <h2>
+            Wireframe: Story Mode
+        </h2>
+        <ul id="ul">
+            <li> Main character's friend has gone missing.</li>
+            <li> The other characters must explore the map to find clues about where he may have gone and find him.</li>
+        </ul>
+        <div class="imagecontainer">
+            <img src="img/wireframe.jpg"/>
+        </div>
+            
+    </div>
+</body>
+
+
+   <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
+  <script src="js/main.js"></script>
+  <script>
+    $('div.slide').clickthrough({
+        'slide_width': '640px',
+        'control_lis': true
+	});
+  </script>
+
+</html>

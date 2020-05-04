@@ -1,0 +1,104 @@
+/* styling of basic components */
+html { 
+  background: url("https://media2.giphy.com/media/U3qYN8S0j3bpK/giphy.webp?cid=790b76119b80dadec7df9030ec6f4f38fc34b2e41e469c0a&rid=giphy.webp");
+}
+body { 
+margin:0;
+}
+div {
+  overflow: hidden;
+  box-sizing: border-box;
+}
+a { 
+  text-decoration:none;
+  text-transform:none;
+  color:black;}
+p { 
+    border: solid black 2px;
+    max-width:75px;
+    padding:3px;}
+  
+    p:hover {
+    background-color:#8178b3;}
+
+/* classes in order from back to front */
+.container {
+  display: flex;
+  /* background of webpage */
+  justify-content:center;
+  padding-top: 75px;
+}
+.base {
+  background-color: #e7e2e2;
+  display: flex;
+  height:90vh;
+  width:700px;
+  justify-content:center;
+  align-items:center;
+}
+.child { 
+  background-color: #858080;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  height:82vh;
+  width:600px;
+  border:groove 3px;
+  flex-direction: column;}
+
+.gamecontainer {
+  background-color: #379c64;
+  display:flex;
+  justify-content: center;
+  height:70vh;
+  border: inset 3px;
+  text-align:center;
+}
+/* now onto the ids */
+
+#curvedtopbordersonly { 
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+
+.outer-grid {
+position: relative;
+float: left;
+width: 69vh;
+padding-bottom: 69vh;
+background-color: #9cc;
+}
+.outer-square {
+position: absolute;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: #ccc;
+display: -webkit-flex;
+-webkit-flex-wrap: wrap;
+display: flex;
+flex-wrap: wrap;
+}
+.inner-grid {
+width: 5%;
+height: 5%;
+display: table;
+border: 1px solid black;
+}
+.inner-square {
+line-height: 100%;
+font-size: 50px;
+font-weight: bold;
+display: table-cell;
+text-align: center;
+}
+#WRONG{ 
+background-color: red;
+}
+#start,#end { 
+background-color: green;}
+
+/*#rightway{ 
+background-color: yellow;
+

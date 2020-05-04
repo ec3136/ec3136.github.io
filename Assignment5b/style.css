@@ -1,0 +1,82 @@
+
+
+
+
+
+html { 
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.5),
+    rgba(0, 0, 0, 0.5)
+  ),url("https://images.squarespace-cdn.com/content/v1/56abab9d8b38d4b28f7d183e/1544124639016-QBCXM8GKNCF8K6PNVTWL/ke17ZwdGBToddI8pDm48kKtijf5x5S0rIV7X_qDH3dB7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UaZbTVdO5VSPAOxIcVIbmIFLIFeVDbQiz7iBIgNCzklBDD2o6CESiqIlH5ssNFrtmA/New_York_University_5686957.jpg?format=1500w") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+  font-size: 60; /* makes font bigger on 50% */
+  font-family: Bookman, serif;
+  color: white;
+}
+h2 {
+  text-align: center;
+  width:100%;
+}
+
+.topnav {
+  background-color: rgb(51, 58, 57);
+  overflow: hidden;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: rgb(88, 92, 91);
+  color: white;
+}
+.block1 { 
+  display: block; 
+  height: 10%;
+  width: 100%;
+}
+.block2 { 
+  display: flex; 
+  height: 70%;
+  width: 100%;
+}
+.flexchild { 
+  display: flex; 
+  height: 100%;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+}
+
+#bb {background-color: none}
+#gb {background-color: rgb(60, 105, 64);}
+#basicbg {background-color: rgb(7, 32, 30);}
+#wb {background-color: white; }
+#whitetext {color: white;}
+
+.myFlexedImage {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  max-width: 100%;
+  max-height: 100%;
+}

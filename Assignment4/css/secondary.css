@@ -1,0 +1,65 @@
+h2#exampleid {
+  background: #EBB6C7;
+  border: 3px solid  #543E45;
+  padding: 10px;
+  margin: 10px;
+  font-family: Optima, sans-serif;
+  }
+
+.italic {
+  font-style: italic;
+}
+body {
+  background: #EE8D4A;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTbk_EBdK48ditnPKst6hSt0JIRk8IgPrTRcaYymGk8VYIcTk4-");
+  background-position: center;
+  min-width: 100%; 
+  min-height: 100%;
+  background-size: auto;
+  border: 15px solid  #EE8D4A;
+}
+ul {
+      background-color:#EBB6C7;
+      color: black;
+      border: 3px solid #543E45;
+      padding: 10px;
+      margin: 10px;
+      text-align: left;
+      text-decoration: none;
+      display: inline-block;
+}
+div,h3 {
+  background-color:#E7A97F;
+  color: black;
+  border: 3px solid #543E45;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a:link, a:visited {
+  background-color:#EBB6C7 ;
+  color: black;
+  border: 3px solid #543E45;
+  padding: 10px;
+  margin: 10px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  max-width: 350px;
+  font-family: Optima, sans-serif;
+}
+
+a:hover, a:active {
+  background-color: #E46C92 ;
+}
+img {
+  border:100px #543E45;
+}
+img.displayed {
+  display: block;
+  margin-left: auto;
+  margin-right: auto; 
+}

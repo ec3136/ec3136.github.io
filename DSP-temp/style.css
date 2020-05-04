@@ -1,0 +1,194 @@
+
+body {
+    background-image: url(Artboard1.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color:#2a2d30;
+  }
+
+.control { 
+    border:2px outset;
+    width:100px;
+    margin-left:1150px;
+}
+.control2 { 
+    border:2px outset;
+    width:100px;
+    margin-left:1150px;
+    margin-top:66px;
+}
+.control3 { 
+    border:2px outset;
+    width:100px;
+    margin-left:1150px;
+    margin-top:130px;
+}
+.display { 
+    border:2px inset;
+    width:100px;
+    margin-left:1265px;
+}
+.display2 { 
+    border:2px inset;
+    width:100px;
+    margin-left:1265px;
+    margin-top:66px;
+}
+.display3 { 
+    border:2px inset;
+    width:100px;
+    margin-left:1265px;
+    margin-top:130px;
+}
+.var1 { 
+    margin-top:0px;
+    margin-left:650px;
+}
+.var2 { 
+    margin-top:66px;
+    margin-left:650px;
+}
+.val1 { 
+    width:100px;
+    margin-top:0px;
+    margin-left:865px;
+    border:2px inset;
+}
+.val2 { 
+    width:100px;
+    margin-top:66px;
+    margin-left:865px;
+    border:2px inset;
+}
+.randn{ 
+    background-color: #c0ccce;
+    padding:5px;
+    border-radius:3px;
+    margin-left:1000px;
+    margin-top:20px;
+}
+.randn:hover,#tuner:hover { 
+    transform:scale(1.1);
+} 
+.start { 
+    background-color: #c0ccce;
+    padding:5px;
+    border-radius:3px;
+    margin-left:1000px;
+    margin-top:10px;
+}
+.stop { 
+    background-color: #c0ccce;
+    padding:5px;
+    border-radius:3px;
+    margin-left:1000px;
+    margin-top:10px;
+}
+#panel { 
+    background-color: #2a2d30;
+    padding:5px;
+    color:white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align:center;
+    position:absolute;
+}
+#tuner { 
+    margin-left:1300px;
+    margin-top:310px;
+    width:40px;
+}
+#independent { 
+    border:2px inset;
+    width:200px;
+    background-color: #2a2d30;
+    padding:5px;
+    color:white;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align:center;
+    position:absolute;
+
+}
+#formula {
+    width:500px;
+    border: 2px inset;
+    margin-left:50px;
+    margin-top:170px;
+}
+
+svg {
+  display: block;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 25%;
+}
+
+.waveforms {
+  display: flex;
+  width: 750px;
+  justify-content: center;
+  margin: 8px 0;}
+.waveform {
+    border: 3px solid transparent;
+    cursor: pointer;}
+.active {
+      border: 3px solid #50B9FF;
+      border-radius: 2px;
+      background-color: #f7f9fb;
+}
+
+@keyframes visualize {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-108px);
+  }
+}
+
+.animated {
+  animation: visualize 0.2s linear infinite;
+  animation-play-state: paused;
+}
+
+.playing .active .animated {
+  animation-play-state: running;
+}
+
+.button {
+  margin-top: 8px;
+  height: 36px;
+  padding: 8px 30px;
+  border-radius: 3px;
+  background-color: #c0ccce;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: 20px;}
+
+
+  .button:hover{
+    transform:scale(1.1);
+    color: #fff;
+  }
+
+html, body {
+  height: 100%;
+}
+ /* For mobile devices */
+  @media only screen and (max-width: 767px) {
+    body {
+      /* The file size of this background image is 93% smaller
+       * to improve page load speed on mobile internet connections */
+      background-image: url(Artboard1.png);
+    }
+      }

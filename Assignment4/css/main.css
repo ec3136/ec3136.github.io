@@ -1,0 +1,65 @@
+h2 {
+    background: #F3DAFA;
+    border: 3px solid  #24448F;
+    padding: 10px;
+    margin: 10px;
+    font-family: Optima, sans-serif;
+    }
+
+.italic {
+    font-style: italic;
+}
+body {
+    background: #24448F;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/50577ef3e4b093884ee98e7a/1517584615780-M479C7183T36S2YOIQPF/ke17ZwdGBToddI8pDm48kMAeZJThYp9JJVeahYyxx89Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyrUesBR4HpUCRhiJcJIUm88iKONnwUrwq-ZD6oLxnE3-oXPLAtRqZch6BwTOyW-Nc/AzzariJarrett_Blue3.jpg?format=1000w');
+    background-position: center;
+    min-width: 100%; 
+    min-height: 100%;
+    background-size: auto;
+    border: 15px solid  #24448F;
+}
+ul {
+        background-color:#F3DAFA ;
+        color: black;
+        border: 3px solid #24448F;
+        padding: 10px;
+        margin: 10px;
+        text-align: left;
+        text-decoration: none;
+        display: inline-block;
+}
+div,h3 {
+    background-color:white;
+    color: black;
+    border: 3px solid #24448F;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:link, a:visited {
+    background-color:#F3DAFA ;
+    color: black;
+    border: 3px solid #24448F;
+    padding: 10px;
+    margin: 10px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    max-width: 350px;
+    font-family: Optima, sans-serif;
+  }
+  
+  a:hover, a:active {
+    background-color: #CEAAF7 ;
+  }
+img {
+    border:100px #24448F;
+}
+  img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+}
