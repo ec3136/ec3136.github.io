@@ -1,4 +1,5 @@
-class Sound {
+
+/*class Sound {
   
     constructor(context) {
       this.context = context;
@@ -64,16 +65,12 @@ class Sound {
     })
   }
 
-  var freq = 0;
+var freq = 0;
 var noteGuess = "";
 var tension = 0;
-var mu = 2.3e-4; /* kg/m */
-var length = 0.6477; /* m */
+var mu = 2.3e-4; /* kg/m 
+var length = 0.6477; /* m 
 
-var context = new AudioContext()
-var o = context.createOscillator()
-o.type = "sine"
-o.connect(context.destination)
 
 function random_note_generator(){
     freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
@@ -115,10 +112,114 @@ function myFunction() {
     n.innerHTML = mu + " kg/m";
     o.frequency.value = freq;
   }
-  function stopTone(){ 
-    o.stop();
-  }
-  function startTone(){ 
-    o.start();
-  }
+*/
 
+var context = new AudioContext()
+var o = context.createOscillator()
+o.type = "sine"
+o.connect(context.destination)
+
+
+var freq = 0;
+var noteGuess = "";
+var tension = 0;
+var mu = 2.3e-4; /* kg/m */
+var length = 0.6477; /* m */
+
+function generate_random_note(){
+  freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
+}
+function calc_tension(){
+  tension = mu*(freq/(1/2*length))^2;
+}
+function guessNote() { 
+  if (50 < freq < 100) {
+    noteGuess = "~E2";
+  }
+  else if (100 < freq < 130){
+    noteGuess = "~A2";
+  }
+  else if (130 < freq < 180){
+    noteGuess = "~D3";
+  }
+  else if (180 < freq < 210){
+    noteGuess = "~G3";
+  }
+  else if (210 < freq < 270){
+    noteGuess = "~B3";
+  }
+  else if (270 < freq < 340){
+    noteGuess = "~E4";
+  }
+  else {
+    noteGuess="Unknown";
+  }
+}
+function myFunction() { 
+  generate_random_note();
+  calc_tension();
+  guessNote();
+  var x = document.getElementById("freq")
+  var y = document.getElementById("tension")
+  var w = document.getElementById("mass")
+  var m = document.getElementById("length")
+  var n = document.getElementById("noteGuess")
+
+  x.innerHTML = "Frequency:"+ freq +" Hz";
+  y.innerHTML = "Tension:"+ tension +" N/m";
+  w.innerHTML = "Mass/Length:" + mu + " kg/m";
+  m.innerHTML = "Length:" +length +" m";
+  n.innerHTML =  noteGuess +" ?" ;
+
+  o.frequency.value = freq;
+  console.log('calculate tension');
+  console.log(freq);
+  console.log(noteGuess);
+}
+
+
+$('#max').click(function(){
+  $('.expanded-side-bar').animate({'marginLeft':0}, 200);
+  $('#guitar').animate({'marginLeft':+300}, 200);
+});
+$('#min').click(function(){
+  $('.expanded-side-bar').animate({'marginLeft':-200}, 200);
+  $('#guitar').animate({'marginLeft':50}, 200);
+});
+$('#f').click(function(){
+  if($("#freq").css("display")==="block"){
+    $('#freq').css("display","none");}
+  else {
+    $('#freq').css("display","block");}
+});
+$('#t').click(function(){
+  if($("#tension").css("display")==="block"){
+    $('#tension').css("display","none");}
+  else {
+    $('#tension').css("display","block");}
+});
+$('#mu').click(function(){
+  if($("#mass").css("display")==="block"){
+    $('#mass').css("display","none");}
+  else {
+    $('#mass').css("display","block");}
+});
+$('#l').click(function(){
+  if($("#length").css("display")==="block"){
+    $('#length').css("display","none");}
+  else {
+    $('#length').css("display","block");}
+});
+$('#treble-clef').click(function(){
+  if($("#noteGuess").css("display")==="block"){
+    $('#noteGuess').css("display","none");}
+  else {
+    $('#noteGuess').css("display","block");}
+});
+
+function startTone(){ 
+  o.start();
+}
+function stopTone(){ 
+  o.stop();
+}
