@@ -1,13 +1,48 @@
-<script type="module">import * as hello from './__target__/hello.js'; window.hello = hello;</script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="main.js" defer></script>
-        
-    <h2>Hello demo</h2>
-    
-    <button id="button1">Click me repeatedly!</button>
-    <button id="button2">And click me repeatedly too!</button>
+<!DOCTYPE html>
+<html>
 
-    <button onclick="getDataFromPython()">..</button>
-    <div class="result">
-    Your result will be here
-    </div>
+	<head>
+		<title> Guitar Simulator  </title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<meta charset="utf-8">
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script src="main.js" defer></script>
+	</head>
+
+	<body>
+	<div class="mini-side-bar left">
+		<div class="element" id="f"><img class="img" src="assets/f.png"></div>
+		<div class="element" id="t"><img class="img" src="assets/t.png"></div>
+		<div class="element" id="mu"><img class="img" src="assets/mu.png"></div>
+		<div class="element" id="l"><img class="img" src ="assets/l.png"></div>
+		<div class="element" id="treble-clef"><img class="img" src ="assets/treble-clef.png"></div>
+		<div class="element" id="min"><img class="img" src ="assets/min.png"></div>
+		<div class="element" id="max"><img class="img" src ="assets/max.png"></div>
+	</div>
+	<div class="expanded-side-bar">
+		<div class="element values" id="freq"> Frequency: </div>
+		<div class="element values" id="tension">Tension:</div>
+		<div class="element values" id="mass">Mu:</div>
+		<div class="element values" id="length">Length:</div>
+		<div class="element values" id="noteGuess">Best Guess:</div>
+	</div>
+	<div class="mini-side-bar right">
+		<div class="element"><button onclick="myFunction()"><img class="img" src="assets/note.png"></button></div>
+		<div class="element"><button onclick="startTone()"><img class="img" src="assets/play.png"></button></div>
+		<div class="element"><button onclick="stopTone()"><img class="img" src="assets/stop.png"></button></div>
+		<div class="element"><button onclick="init()"><img class="img" src="assets/wave.png"></button></div>
+	</div>
+	<img id="guitar" src="assets/guitar.png">
+	<div class="test">
+		<input type="range" min="1" max="45" value="1" class="slider" step="0.01" id="myRange">
+	</br><p>	Tension:<span id="demo"></span></p>
+	  </div>
+	<div class="canvas-container">
+		<canvas id="myCanvas" width="800" height="200" style="border:1px solid #7a7a7a;">
+	</div>
+
+	
+	</body>
+
+</html>

@@ -1,244 +1,178 @@
-/*
-let song = []; //will hold all sounds the user adds to song
 
-// Constructor function for Sound objects
-function Sound(audio="", duration=0, ID="", image = "", zone = "", alt = "") {  
-	this.audio = new Audio(audio); 
-	this.audio.volume = 0.3;  
-	this.duration = duration;  
-	this.buttonID = ID + "Button";  
-	this.image = image;  
-	this.zone = zone;  
-	this.alt = alt;  
-	this.imgID = ID + "Img";
+var context = new AudioContext()
+var o = context.createOscillator()
+o.type = "sine"
+o.connect(context.destination)
+
+
+var freq = 0;
+var noteGuess = "";
+var tension = 0;
+var mu = 2.3e-4; /* kg/m */
+var length = 0.6477; /* m */
+
+function generate_random_note(){
+  freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
 }
+function myFunction() { 
+  generate_random_note();
+  calc_tension();
+  guessNote();
+  var x = document.getElementById("freq")
+  var y = document.getElementById("tension")
+  var w = document.getElementById("mass")
+  var m = document.getElementById("length")
+  var n = document.getElementById("noteGuess")
 
+  x.innerHTML = "Frequency:"+ freq +" Hz";
+  y.innerHTML = "Tension:"+ tension +" N/m";
+  w.innerHTML = "Mass/Length:" + mu + " kg/m";
+  m.innerHTML = "Length:" +length +" m";
+  n.innerHTML =  noteGuess +" ?" ;
 
-//Create Sound objects
-let monkey = new Sound("assets/sounds/monkeyCry.mp3", 4300, "#monkey", "assets/icons/monkey.png", "#monkeyZone" ); 
-let bird = new Sound("assets/sounds/birds.mp3", 4552, "#bird", "assets/icons/bird.png", "#birdZone");
-let tiger = new Sound("assets/sounds/tiger.mp3", 3200, "#tiger", "assets/icons/tiger.png", "#tigerZone");
-let rain = new Sound("assets/sounds/rain.wav", 4000, "#rain", "assets/icons/rain.png", "#rainZone");
-let coconut = new Sound("assets/sounds/coconut.wav", 6865, "#coconut", "assets/icons/coconut.png", "#coconutZone");
-let frog = new Sound("assets/sounds/frog.mp3", 4219, "#frog", "assets/icons/frog.png", "#frogZone");
-let snake = new Sound("assets/sounds/snake.mp3", 2200, "#snake", "assets/icons/snake.png", "#snakeZone");
-let insect = new Sound("assets/sounds/crickets.wav", 2989, "#insect", "assets/icons/insect.png", "#insectZone");
-let owl = new Sound("assets/sounds/owl.wav", 4393, "#owl", "assets/icons/owl.png", "#owlZone");
-let elephant= new Sound("assets/sounds/elephant.wav", 4200, "#elephant", "assets/icons/elephant.png", "#elephantZone");
+  o.frequency.value = freq;
 
-
-//Adding single click actions.
-//Specific sound plays when button clicked. (and icon will popup. not yet implemented)
-$('#monkeyButton').click(e => playSound(monkey));
-$('#birdButton').click(e => playSound(bird));
-$('#tigerButton').click(e => playSound(tiger));
-$('#rainButton').click(e => playSound(rain));
-$('#coconutButton').click(e => playSound(coconut));
-$('#frogButton').click(e => playSound(frog));
-$('#snakeButton').click(e => playSound(snake));
-$('#insectButton').click(e => playSound(insect));
-$('#owlButton').click(e => playSound(owl));
-$('#elephantButton').click(e => playSound(elephant));
-$('#playbackButton').click(function() {
-	playSong();
-});
-$('#undoButton').click(e => undoSoundAddition());
-
-$('#clearButton').click(e => clearSong());
-
-// $('#monkeyButton').click(e => scaleImage(monkey));
-
-function scaleImage(sound) {
-
-	$(document).ready(function () {
-        var small={width: "200px",height: "116px"};
-        var large={width: "400px",height: "232px"};
-        var count=1; 
-        $(sound.imgID).css(small).on('click',function () { 
-            $(sound.imgID).animate((count==1)?large:small);
-            count = 1-count;
-        });
-    });
-
-	console.log(sound.imgID);
-
-
-
-	
-	}
-	// while (i<2) {
-	// 	if (i = 0) {
-	// 		$("sound.image").css("transform", "scale(1.3)");
-	// 		$("sound.image").css("transition-duration", "1.5s");
-	// 		i++;
-	// 	}
-	// 	if (i = 1 ) {
-	// 		$("sound.image").css("transform", "scale(1)");
-	// 		$("sound.image").css("transition-duration", "1.5s");
-	// 		i++;
-	// 	}
-	// }
-
-
-
-//Adding double click actions.
-//Adds specified sounds to the song when button dblclicked. (Accompanying animation not yet decided)
-$('#monkeyButton').dblclick(function() {
-  addToSong(monkey);
-});
-
-$('#birdButton').dblclick(function() {
-  addToSong(bird);
-});
-$('#tigerButton').dblclick(function() {
-  addToSong(tiger);
-});
-$('#rainButton').dblclick(function() {
-  addToSong(rain);
-});
-$('#coconutButton').dblclick(function() {
-  addToSong(coconut);
-});
-$('#frogButton').dblclick(function() {
-  addToSong(frog);
-});
-$('#snakeButton').dblclick(function() {
-  addToSong(snake);
-});
-$('#insectButton').dblclick(function() {
-  addToSong(insect);
-});
-
-$('#owlButton').dblclick(function() {
-  addToSong(owl);
-});
-$('#elephantButton').dblclick(function() {
-  addToSong(elephant);
-});
-
-
-
-
-//FUNCTONS
-
-//plays specificed sound
-function playSound(sound) { 
-sound.audio.play(); 
-displayImage(sound); 
-}
-
-function displayImage (sound)  {
-	// console.log($(sound.zone).length);
-	if ($(sound.zone).is(':empty')) { //adds image into zone if its empty. Else scales up image in zone
-		var soundIcon = document.createElement("IMG");  
-		// soundIcon.setAttribute("id", ound.image);     
-		soundIcon.setAttribute("src", sound.image);    
-		soundIcon.setAttribute("id", sound.imgID);     
-		// soundIcon.setAttribute("width", "100%");     
-	soundIcon.setAttribute("height", "100%");     
-	soundIcon.setAttribute("alt", sound.alt);  
-	soundIcon.setAttribute("currScale", 1);  
-	$(sound.zone).append(soundIcon); 
-	}
-	else { //scale image up and down
-		// scaleImage(sound);
-		// let scale = 1;
-
-		//scale up
-		// while(scale<8) {
-		// 	setTimeout(function(){
-		// 		$(sound.zone).children('img')[0].style.transform = "scale(" + scale + ")";
-		// 		scale+=0.1;
-		// 	}, 1000);	
-		// }
-		let currScale = $(sound.zone).children('img')[0].getAttribute("currScale");
-		let newScale = ($(sound.zone).children('img')[0].getAttribute("currScale")) * 1.1;
-		$(sound.zone).children('img')[0].setAttribute("currScale", newScale);//update scale attribute
-		$(sound.zone).children('img')[0].style.transform = "scale(" + newScale + ")";
-		
-	}
-
-}
-
-//adds sound to song array and adds icon to staff
-function addToSong(sound) {
-	song.push(sound);
-
-	//adds to staff
-	var liObj = document.createElement("LI");
-	var soundIcon = document.createElement("IMG");  
-	soundIcon.setAttribute("src", sound.image);     
-	// soundIcon.setAttribute("width", "100%");     
-	soundIcon.setAttribute("height", "100%");     
-	soundIcon.setAttribute("alt", sound.alt);  
-	liObj.append(soundIcon);
-	$("#notes").append(liObj); 
-}
-
-let delayBeforePlaying; //amount of time before each sound starts to play...will hold duration of prev sound in the sequence
-//iterates through song array playing each sound
-function playSong() {
-clearZones();
-for (let i =0; i<song.length; i++) {
-   if(!song[i-1]) { //this is the first sound in song so we want a delay of 0
-    setTimeout(function(){playSound(song[i])}, 0);
-    delayBeforePlaying = 0; // resets this variable each time the song starts
-   }
-   else {
-    delayBeforePlaying = delayBeforePlaying + song[i-1].duration; //updates the amount of time to delay before playing the next song..equal to the total length of all the previous sounds combined
-    setTimeout(function(){playSound(song[i])}, delayBeforePlaying);
-   }
-}
-}
-
-//undoes last sound added to sound
-function undoSoundAddition() {
-    song.pop();
-    $('li:last-child').remove();
-    // $("p:last-child")
-    // $("#notes").pop();
-}
-
-//clears out all the zone images before playing song
-function clearZones() {
-$(".soundIcon").empty();
-}
-
-//clears song array
-function clearSong() {
-    song.length = 0;
-    $("#notes").empty();
-}
-
-$('#infoButton').click (e => displayInfo());
-function displayInfo() {
-	$("#infoButton").click(function() {
-	    $("#infoBox").toggle();
-	  });
-	}
-
-
-
-
-$("#button1").click(function(){
-	$.ajax({
-		 type:'get',
-		 url:'/hello.py',
-		 cache:false,
-		 async:'asynchronous',
-		 dataType:'json',
-		 success: function(data) {
-		   console.log(JSON.stringify(data))
-		 },
-		 error: function(request, status, error) {
-		   console.log("Error: " + error)
-		 }
-	  });
-   });
-*/
-  function getDataFromPython(){
-    $.get( "http://0.0.0.0:8000/hello.py", function( data ) {
-      $( ".result" ).html( data );
-      alert( "Load was performed." );
-    });
+  slider1.oninput = function() {
+    demo.innerHTML = this.value;
+    y.innerHTML = "Tension:"+ this.value +" N/m";
+    var testing = this.value;
   }
+}
+
+function startTone(){ 
+  o.start();
+}
+function stopTone(){ 
+  o.stop();
+}
+
+
+$('#max').click(function(){
+  $('.expanded-side-bar').animate({'marginLeft':0}, 200);
+  $('#guitar').animate({'marginLeft':+250}, 200);
+  $('.test').animate({'marginLeft':"294px"}, 200);
+});
+$('#min').click(function(){
+  $('.expanded-side-bar').animate({'marginLeft':-200}, 200);
+  $('#guitar').animate({'marginLeft':50}, 200);
+  $('.test').animate({'marginLeft':"155px"}, 200);
+});
+$('#f').click(function(){
+  if($("#freq").css("display")==="block"){
+    $('#freq').css("display","none");}
+  else {
+    $('#freq').css("display","block");}
+});
+$('#t').click(function(){
+  if($("#tension").css("display")==="block"){
+    $('#tension').css("display","none");}
+  else {
+    $('#tension').css("display","block");}
+});
+$('#mu').click(function(){
+  if($("#mass").css("display")==="block"){
+    $('#mass').css("display","none");}
+  else {
+    $('#mass').css("display","block");}
+});
+$('#l').click(function(){
+  if($("#length").css("display")==="block"){
+    $('#length').css("display","none");}
+  else {
+    $('#length').css("display","block");}
+});
+$('#treble-clef').click(function(){
+  if($("#noteGuess").css("display")==="block"){
+    $('#noteGuess').css("display","none");}
+  else {
+    $('#noteGuess').css("display","block");}
+});
+
+
+function showAxes(ctx,axes) {
+  var width = ctx.canvas.width;
+  var height = ctx.canvas.height;
+  var xMin = 0;
+  ctx.beginPath();
+  ctx.strokeStyle = "rgb(128,128,128)";
+  ctx.moveTo(xMin, height/2);
+  ctx.lineTo(width, height/2);
+  ctx.moveTo(width/2, 0);
+  ctx.lineTo(width/2, height);
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, height);
+  ctx.stroke();
+}
+function plotSine(ctx, xOffset, yOffset) {
+  var width = ctx.canvas.width;
+  var height = ctx.canvas.height;
+  var scale = 20;
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "rgb(66,44,255)";
+  var x = 10;
+  var y = 0;
+  var amplitude = 40;
+  var f = 400-freq;
+  ctx.moveTo(x, y);
+  while (x < width) {
+      y = height/2 + amplitude * Math.sin((x+xOffset)/f);
+      ctx.lineTo(x, y);
+      x++;
+  }
+  console.log(freq)
+  ctx.stroke();
+  ctx.save();
+}
+function draw() {
+  var canvas = document.getElementById("myCanvas");
+  var context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, 800, 800);
+  showAxes(context);
+  context.save();            
+  
+  plotSine(context, step, 10);
+  context.restore();
+  
+  step += 4;
+  window.requestAnimationFrame(draw);
+}
+function init() {
+  window.requestAnimationFrame(draw);
+}
+var step = -10;
+
+function calc_tension(){
+  tension = mu*(freq/(1/2*length))^2;
+  console.log(tension)
+
+}
+function guessNote() { 
+  if (50 < freq < 100) {
+    noteGuess = "~E2";
+  }
+  else if (100 < freq < 130){
+    noteGuess = "~A2";
+  }
+  else if (130 < freq < 180){
+    noteGuess = "~D3";
+  }
+  else if (180 < freq < 210){
+    noteGuess = "~G3";
+  }
+  else if (210 < freq < 270){
+    noteGuess = "~B3";
+  }
+  else if (270 < freq < 340){
+    noteGuess = "~E4";
+  }
+  else {
+    noteGuess="Unknown";
+  }
+  console.log(noteGuess)
+}
+
+var slider1 = document.getElementById("myRange");
+var demo = document.getElementById("demo");
+demo.innerHTML = slider1.value;

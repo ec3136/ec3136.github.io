@@ -1,119 +1,4 @@
 
-/*class Sound {
-  
-    constructor(context) {
-      this.context = context;
-    }
-    
-    init() {
-      this.oscillator = this.context.createOscillator();
-      this.gainNode = this.context.createGain();
-  
-      this.oscillator.connect(this.gainNode);
-      this.gainNode.connect(this.context.destination);
-    }
-  
-    play(value) {
-      this.init();
-  
-      this.gainNode.gain.setValueAtTime(0.5, this.context.currentTime);
-              
-      this.oscillator.start();
-    }
-    
-    stop() {
-      this.gainNode.gain.exponentialRampToValueAtTime(0.001, this.context.currentTime + 1);
-      this.oscillator.stop(this.context.currentTime + 1);
-    }
-   
-  }  
-  
-  var context = new AudioContext();
-  var sound = new Sound(context);
-  sound.init();
-  var wave = 'sine';
-  var state = 'paused';
-  
-  var buttons = document.querySelectorAll('.waveform');
-  var playBtn = document.querySelector('#play');
-  var container = document.querySelector('.container');
-  buttons.forEach(function(button) {
-    button.addEventListener('click', function() {           
-      cleanClass('active');
-      wave = button.dataset.wave;
-      sound.oscillator.type = wave;
-      button.classList.add('active');
-    })
-  })
-  
-  playBtn.addEventListener('click', function(){
-    container.classList.toggle('playing');
-    
-    if(playBtn.text == 'Play') {
-      sound.play();
-      sound.oscillator.type = wave;
-      playBtn.text = 'Pause';
-    } else {
-      sound.stop();
-      playBtn.text = 'Play';
-    }
-  })
-  
-  function cleanClass(rclass) {
-    buttons.forEach(function(button) {
-      button.classList.remove(rclass);
-    })
-  }
-
-var freq = 0;
-var noteGuess = "";
-var tension = 0;
-var mu = 2.3e-4; /* kg/m 
-var length = 0.6477; /* m 
-
-
-function random_note_generator(){
-    freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
-    tension = mu*(freq/(1/2*length))^2;
-
-    if (50 < freq < 100) {
-        noteGuess = "~E2";
-    }
-    else if (100 < freq < 130){
-        noteGuess = "~A2";
-    }
-    else if (130 < freq < 180){
-        noteGuess = "~D3";
-    }
-    else if (180 < freq < 210){
-        noteGuess = "~G3";
-    }
-    else if (210 < freq < 270){
-        noteGuess = "~B3";
-    }
-    else if (270 < freq < 340){
-        noteGuess = "~E4";
-    }
-    else {
-        noteGuess="Unknown";
-    }
-}
-function myFunction() {
-    var x = document.getElementById("demo")
-    var y = document.getElementById("demo2")
-    var w = document.getElementById("demo3")
-    var m = document.getElementById("demo4")
-    var n = document.getElementById("demo5")
-    random_note_generator();
-    x.innerHTML = freq +" Hz";
-    y.innerHTML = noteGuess;
-    w.innerHTML = tension +" N/m";
-    m.innerHTML = length +" m";
-    n.innerHTML = mu + " kg/m";
-    o.frequency.value = freq;
-  }
-*/
-
 var context = new AudioContext()
 var o = context.createOscillator()
 o.type = "sine"
@@ -126,33 +11,12 @@ var tension = 0;
 var mu = 2.3e-4; /* kg/m */
 var length = 0.6477; /* m */
 
-
-function guessNote() { 
-  if (50 < freq < 100) {
-    noteGuess = "~E2";
-  }
-  else if (100 < freq < 130){
-    noteGuess = "~A2";
-  }
-  else if (130 < freq < 180){
-    noteGuess = "~D3";
-  }
-  else if (180 < freq < 210){
-    noteGuess = "~G3";
-  }
-  else if (210 < freq < 270){
-    noteGuess = "~B3";
-  }
-  else if (270 < freq < 340){
-    noteGuess = "~E4";
-  }
-  else {
-    noteGuess="Unknown";
-  }
+function generate_random_note(){
+  freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
 }
 function myFunction() { 
-  freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
-  tension = mu*(freq/(1/2*length))^2;
+  generate_random_note();
+  calc_tension();
   guessNote();
   var x = document.getElementById("freq")
   var y = document.getElementById("tension")
@@ -160,19 +24,38 @@ function myFunction() {
   var m = document.getElementById("length")
   var n = document.getElementById("noteGuess")
 
-x.innerHTML = freq +" Hz";
-y.innerHTML =tension +" N/m";
-w.innerHTML = mu + " kg/m";
-m.innerHTML = length +" m";
-n.innerHTML =  noteGuess ;
+  x.innerHTML = "Frequency:"+ freq +" Hz";
+  y.innerHTML = "Tension:"+ tension +" N/m";
+  w.innerHTML = "Mass/Length:" + mu + " kg/m";
+  m.innerHTML = "Length:" +length +" m";
+  n.innerHTML =  noteGuess +" ?" ;
 
-o.frequency.value = freq;
+  o.frequency.value = freq;
+
+  slider1.oninput = function() {
+    demo.innerHTML = this.value;
+    y.innerHTML = "Tension:"+ this.value +" N/m";
+    var testing = this.value;
+  }
+}
+
+function startTone(){ 
+  o.start();
+}
+function stopTone(){ 
+  o.stop();
 }
 
 
-$('.mini-side-bar').mouseover(function(){
+$('#max').click(function(){
   $('.expanded-side-bar').animate({'marginLeft':0}, 200);
   $('#guitar').animate({'marginLeft':+250}, 200);
+  $('.test').animate({'marginLeft':"294px"}, 200);
+});
+$('#min').click(function(){
+  $('.expanded-side-bar').animate({'marginLeft':-200}, 200);
+  $('#guitar').animate({'marginLeft':50}, 200);
+  $('.test').animate({'marginLeft':"155px"}, 200);
 });
 $('#f').click(function(){
   if($("#freq").css("display")==="block"){
@@ -205,9 +88,91 @@ $('#treble-clef').click(function(){
     $('#noteGuess').css("display","block");}
 });
 
-function startTone(){ 
-  o.start();
+
+function showAxes(ctx,axes) {
+  var width = ctx.canvas.width;
+  var height = ctx.canvas.height;
+  var xMin = 0;
+  ctx.beginPath();
+  ctx.strokeStyle = "rgb(128,128,128)";
+  ctx.moveTo(xMin, height/2);
+  ctx.lineTo(width, height/2);
+  ctx.moveTo(width/2, 0);
+  ctx.lineTo(width/2, height);
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, height);
+  ctx.stroke();
 }
-function stopTone(){ 
-  o.stop();
+function plotSine(ctx, xOffset, yOffset) {
+  var width = ctx.canvas.width;
+  var height = ctx.canvas.height;
+  var scale = 20;
+  ctx.beginPath();
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = "rgb(66,44,255)";
+  var x = 10;
+  var y = 0;
+  var amplitude = 40;
+  var f = 400-freq;
+  ctx.moveTo(x, y);
+  while (x < width) {
+      y = height/2 + amplitude * Math.sin((x+xOffset)/f);
+      ctx.lineTo(x, y);
+      x++;
+  }
+  console.log(freq)
+  ctx.stroke();
+  ctx.save();
 }
+function draw() {
+  var canvas = document.getElementById("myCanvas");
+  var context = canvas.getContext("2d");
+
+  context.clearRect(0, 0, 800, 800);
+  showAxes(context);
+  context.save();            
+  
+  plotSine(context, step, 10);
+  context.restore();
+  
+  step += 4;
+  window.requestAnimationFrame(draw);
+}
+function init() {
+  window.requestAnimationFrame(draw);
+}
+var step = -10;
+
+function calc_tension(){
+  tension = mu*(freq/(1/2*length))^2;
+  console.log(tension)
+
+}
+function guessNote() { 
+  if (50 < freq < 100) {
+    noteGuess = "~E2";
+  }
+  else if (100 < freq < 130){
+    noteGuess = "~A2";
+  }
+  else if (130 < freq < 180){
+    noteGuess = "~D3";
+  }
+  else if (180 < freq < 210){
+    noteGuess = "~G3";
+  }
+  else if (210 < freq < 270){
+    noteGuess = "~B3";
+  }
+  else if (270 < freq < 340){
+    noteGuess = "~E4";
+  }
+  else {
+    noteGuess="Unknown";
+  }
+  console.log(noteGuess)
+}
+
+var slider1 = document.getElementById("myRange");
+var demo = document.getElementById("demo");
+demo.innerHTML = slider1.value;
