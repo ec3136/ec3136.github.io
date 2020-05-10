@@ -98,12 +98,6 @@ a {
   height:5%;
   background-color:#36383a;
 }
-.test {
-  background-color:#eeeeee;
-  position:absolute;
-  margin-top:600px;
-  margin-left:155px;
-  border:3px inset;
-  display:flex;
-  justify-content:center;
+#myCanvas { 
+  display:none;
 }
