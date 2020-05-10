@@ -11,7 +11,73 @@ var mu = 2.3e-4; /* kg/m */
 var length = 0.6477; /* m */
 
 function generate_random_note(){
-  freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100; 
+  freq = Math.floor((Math.random() * 350) + 50)+ Math.floor((Math.random() * 100) + 1)/100;
+}
+function guessNote() { 
+  console.log(freq)
+  /* assume "in tune" with 5% accuracy */
+  if (freq>=70 && freq<=78) {
+    noteGuess = "Maybe a flat E2?";
+  }
+  else if(freq>=78 && freq<=86){
+    noteGuess = " perfect E2! ";
+  }
+  else if(freq>=87 && freq<=95){
+    noteGuess = "That's a sharp E2 ";
+  }
+  else if (freq>=96 && freq<=104){
+    noteGuess = " Flat A2";
+  }
+  else if (freq>=105 && freq<=115){
+    noteGuess = "perfect A2!";
+  }
+  else if (freq>=116 && freq<=130){
+    noteGuess = "sharp A2";
+  }
+  
+  else if (freq>=130 && freq<=137){ /*146*/
+    noteGuess = "that seems like a flat D3";
+  }
+  else if (freq>=138 && freq<=154){ /*146*/
+    noteGuess = "perfect D3!";
+  }
+  else if (freq>=155 && freq<=170){ /*146*/
+    noteGuess = "maybe a sharp D3?";
+  }
+  else if (freq>=171 && freq<=185){ /*196*/
+    noteGuess = "flat G3";
+  }
+  else if (freq>=186 && freq<=206){ /*196*/
+    noteGuess = "perfect G3";
+  }
+  else if (freq>=207 && freq<=225){ /*196*/
+    noteGuess = "sharp G3";
+  }
+  else if (freq>=226 && freq<=233){/*246*/
+    noteGuess = "flat B3";
+  }
+  else if (freq>=234 && freq<=258){/*246*/
+    noteGuess = "perfect B3!";
+  }
+  else if (freq>=259 && freq<=300){/*246*/
+    noteGuess = "sharp B3!";
+  }
+  else if (freq>=301 && freq<=312){/*246*/
+    noteGuess = "flat E4";
+  }
+  else if (freq>=313 && freq<=345){/*329*/
+    noteGuess = "perfect E4";
+  }
+  else if (freq>=346 && freq<=360){/*329*/
+    noteGuess = "sharp E4";
+  }
+  else if (freq>=361){
+    noteGuess="Too High!";
+  }
+  else if (freq<49){
+    noteGuess="Too Low!";
+  }
+  console.log(noteGuess)
 }
 function myFunction() { 
   generate_random_note();
@@ -27,15 +93,9 @@ function myFunction() {
   y.innerHTML = "Tension:"+ tension +" N/m";
   w.innerHTML = "Mass/Length:" + mu + " kg/m";
   m.innerHTML = "Length:" +length +" m";
-  n.innerHTML =  noteGuess +" ?" ;
+  n.innerHTML =  noteGuess;
 
   o.frequency.value = freq;
-
-  slider1.oninput = function() {
-    demo.innerHTML = this.value;
-    y.innerHTML = "Tension:"+ this.value +" N/m";
-    var testing = this.value;
-  }
 }
 function startTone(){ 
   o.start();
@@ -47,7 +107,7 @@ function stopTone(){
 
 $('#max').click(function(){
   $('.expanded-side-bar').animate({'marginLeft':0}, 200);
-  $('#guitar').animate({'marginLeft':+250}, 200);
+  $('#guitar').animate({'marginLeft':+200}, 200);
   $('.test').animate({'marginLeft':"294px"}, 200);
 });
 $('#min').click(function(){
@@ -118,7 +178,6 @@ function plotSine(ctx, xOffset, yOffset) {
       ctx.lineTo(x, y);
       x++;
   }
-  console.log(freq)
   ctx.stroke();
   ctx.save();
 }
@@ -149,30 +208,6 @@ function calc_tension(){
   tension = mu*(freq/(1/2*length))^2;
   console.log(tension)
 
-}
-function guessNote() { 
-  if (50 < freq < 100) {
-    noteGuess = "~E2";
-  }
-  else if (100 < freq < 130){
-    noteGuess = "~A2";
-  }
-  else if (130 < freq < 180){
-    noteGuess = "~D3";
-  }
-  else if (180 < freq < 210){
-    noteGuess = "~G3";
-  }
-  else if (210 < freq < 270){
-    noteGuess = "~B3";
-  }
-  else if (270 < freq < 340){
-    noteGuess = "~E4";
-  }
-  else {
-    noteGuess="Unknown";
-  }
-  console.log(noteGuess)
 }
 
 
