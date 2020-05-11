@@ -20,8 +20,11 @@ a {
 .canvas-container { 
   display:flex;
   justify-content:center;
-  height:100vh;
-  width:100vw;
+  align-items:center;
+  height:50vh;
+  width:70vw;
+  margin-left:535px;
+  z-index:3;
 }
 .mini-side-bar { 
   display:flex;
@@ -78,10 +81,11 @@ a {
   z-index:100;
 }
 #guitar { 
-  margin-top:-400px;
+  margin-top:-450px;
   margin-left:65px;
   width:1300px;
   position:absolute;
+  z-index:1;
 }
 #one {
   height:48%;
@@ -100,4 +104,6 @@ a {
 }
 #myCanvas { 
   display:none;
+  margin:5 auto;
+
 }

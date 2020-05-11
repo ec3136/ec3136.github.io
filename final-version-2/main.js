@@ -109,6 +109,7 @@ $('#max').click(function(){
   $('.expanded-side-bar').animate({'marginLeft':0}, 200);
   $('#guitar').animate({'marginLeft':+200}, 200);
   $('.test').animate({'marginLeft':"294px"}, 200);
+  $('#myCanvas').animate({'marginLeft':"-180px"}, 200);
 });
 $('#min').click(function(){
   $('.expanded-side-bar').animate({'marginLeft':-200}, 200);
@@ -185,7 +186,7 @@ function drawOne() {
   var canvas = document.getElementById("myCanvas");
   var context = canvas.getContext("2d");
 
-  context.clearRect(0, 0, 800, 800);
+  context.clearRect(0, 0, 900, 900);
   showAxes(context);
   context.save();            
   
