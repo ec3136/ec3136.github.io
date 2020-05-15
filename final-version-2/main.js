@@ -297,7 +297,4 @@ function init2(){
   setup();
   draw();
 }
-function hideWaveform(){
-  ctx.hide();
-}
 

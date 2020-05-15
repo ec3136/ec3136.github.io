@@ -146,6 +146,9 @@ $('#treble-clef').click(function(){
   else {
     $('#noteGuess').css("display","block");}
 });
+$('#python').click()(function(){
+  window.location.href = "https://ec3136.github.io/final-version-2/demo.html";
+})
 
 
 function showAxes(ctx,axes) {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title> Guitar Simulator  </title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<meta charset="utf-8">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script src="main.js" defer></script>
+	</head>
+
+	<body>
+	<div class="mini-side-bar left">
+		<div class="element" id="f" title="Frequency"><img class="img" src="assets/f.png"></div>
+		<div class="element" id="t" title="Tension"><img class="img" src="assets/t.png"></div>
+		<div class="element" id="mu" title="Mass per Unit Length"><img class="img" src="assets/mu.png"></div>
+		<div class="element" id="l" title="Length"><img class="img" src ="assets/l.png"></div>
+		<div class="element" id="treble-clef" title="Note"><img class="img" src ="assets/treble-clef.png"></div>
+		<div class="element" id="min" title="minimize control bar"><img class="img" src ="assets/min.png"></div>
+		<div class="element" id="max" title="expand control bar"><img class="img" src ="assets/max.png"></div>
+		<div class="element" id="python" title="See Demo of Python Code"><img class="img" src ="assets/python.jpg"></div>
+	</div>
+	<div class="expanded-side-bar">
+		<div class="element values" id="freq"> Frequency: </div>
+		<div class="element values" id="tension">Tension:</div>
+		<div class="element values" id="mass">Mu:</div>
+		<div class="element values" id="length">Length:</div>
+		<div class="element values" id="noteGuess">Best Guess:</div>
+	</div>
+	<div class="mini-side-bar right">
+		<div class="element"><button title="generate a random tone" onclick="myFunction()"><img class="img" src="assets/random.jpg"></button></div>
+		<div class="element"><button title="start random note" onclick="startTone()"><img class="img" src="assets/play.png"></button></div>
+		<div class="element"><button title="stop random note" onclick="stopTone()"><img class="img" src="assets/stop.png"></button></div>
+		<div class="element"><button title="draw wave for random tone" onclick="init()"><img class="img" src="assets/wave.png"></button></div>
+
+		
+		<div class="element"><button title="start and control your own tone" onclick="startMyTone()"><img class="img" src="assets/note-play.png"></button></div>
+		<div class="element"><button title="stop your tone" onclick="stopMyTone()"><img class="img" src="assets/note-stop.png"></button></div>
+		<div class="element"><button title="draw wave for your tone" onclick="showWaveform()"><img class="img" src="assets/draw-sinewave.png"></button></div>
+	</div>
+	<img id="guitar" src="assets/guitar.png">
+	<div>
+		
+	<!--</br><p>	Tension:<span id="demo"></span></p>-->
+	  </div>
+	<div class="canvas-container">
+		<canvas id="myCanvas" width="850" height="200" style="border:1px solid #7a7a7a;">
+
+	</div>
+
+	
+	</body>
+
+</html>

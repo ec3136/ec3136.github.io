@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title> Guitar Simulator  </title>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<meta charset="utf-8">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/p5.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.dom.min.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.11/addons/p5.sound.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+		<link href="style.css" rel="stylesheet" type="text/css">
+		<script src="main.js" defer></script>
+	</head>
+
+	<body onload="init()">
+	<div class="mini-side-bar left">
+		<div class="element" id="f" title="Frequency"><img class="img" src="assets/f.png"></div>
+		<div class="element" id="t" title="Tension"><img class="img" src="assets/t.png"></div>
+		<div class="element" id="mu" title="Mass per Unit Length"><img class="img" src="assets/mu.png"></div>
+		<div class="element" id="l" title="Length"><img class="img" src ="assets/l.png"></div>
+		<div class="element" id="treble-clef" title="Note"><img class="img" src ="assets/treble-clef.png"></div>
+		<div class="element" id="min" title="minimize control bar"><img class="img" src ="assets/min.png"></div>
+		<div class="element" id="max" title="expand control bar"><img class="img" src ="assets/max.png"></div>
+		<div class="element" id="python" title="See Demo of Python Code"><img class="img" src ="assets/python.jpg"></div>
+	</div>
+	<div class="expanded-side-bar">
+		<div class="element values" id="freq"> Frequency: </div>
+		<div class="element values" id="tension">Tension:</div>
+		<div class="element values" id="mass">Mu:</div>
+		<div class="element values" id="length">Length:</div>
+		<div class="element values" id="noteGuess">Best Guess:</div>
+	</div>
+	<div class="mini-side-bar right">
+		<div class="element"><button title="generate a random tone" onclick="myFunction()"><img class="img" src="assets/random.jpg"></button></div>
+		<div class="element"><button title="start random note" onclick="startTone()"><img class="img" src="assets/play.png"></button></div>
+		<div class="element"><button title="stop random note" onclick="stopTone()"><img class="img" src="assets/stop.png"></button></div>
+		<div class="element"><button title="draw wave for tone"><img class="img" src="assets/wave.png"></button></div>
+	</div>
+	
+	<div class='grid-container'>
+		<div class="grid-row">
+			<div class="grid-element-large">
+				<img id="tune-C" src="assets/tuner.png">
+				<img id="tune-G" src="assets/tuner.png">
+				<img id="tune-A" src="assets/tuner.png">
+				<img id="tune-E" src="assets/tuner.png">
+				<img id="uke" src="assets/uke.png">
+				
+			</div>
+			<div class="grid-element-small">
+				<div class="grid-row">
+					<div class="mini-grid-item" id="g">G</div>
+					<div class="mini-grid-item" id="c">C</div>
+					<div class="mini-grid-item" id="e">E</div>
+					<div class="mini-grid-item" id="a">A</div>
+					<div class="mini-grid-item">392.00 Hz</div>
+					<div class="mini-grid-item">261.60 Hz</div>
+					<div class="mini-grid-item">329.63 Hz</div>
+					<div class="mini-grid-item">440.00 Hz</div>
+					<div class="mini-grid-item">L = 13in </div>
+					<div class="mini-grid-item">L = 13in</div>
+					<div class="mini-grid-item">L = 13in</div>
+					<div class="mini-grid-item">L = 13in</div>
+					<div class="mini-grid-item">mu = 3.61 * 10^-3 kg/m^3 </div>
+					<div class="mini-grid-item">mu = 5.76 * 10^-2 kg/m^3 </div>
+					<div class="mini-grid-item">mu = 5.08 * 10^-3 kg/m^3</div>
+					<div class="mini-grid-item">mu = 2.65 * 10^-3 kg/m^3</div>
+					<div id="increase-tens" class="mini-grid-item-large">Turn the Tuner Peg (+10 degrees)</div>
+					<div id="decrease-tens" class="mini-grid-item-large">Turn the Tuner Peg (-10 degrees)</div>
+					
+				</div>
+			</div>
+			<div class="grid-element-large">
+			</div>
+			<div class="grid-element-small">
+				<img id="formula" src="assets/formula.png">
+				<img id="formula" src="assets/formula2.png">
+			</div>
+		</div>
+	</div>
+
+	
+	</body>
+
+</html>

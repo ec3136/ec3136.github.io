@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<style>
+    .CanvasVideo {
+        border: 1px solid black;
+        width: 300px;
+        height: 300px;
+    }
+    video {
+        height: inherit;
+        width: inherit;
+    }
+</style>
+<body>
+
+<div id="popUpCanvas">
+
+</div>
+
+<button onclick="myFunction()">Try it</button>
+<script>
+    function myFunction() {
+        var videoCanvas = document.createElement("Div");
+        var video = document.createElement("Video");
+        var source = document.createElement("Source");
+
+        videoCanvas.setAttribute('class', 'CanvasVideo');
+        videoCanvas.setAttribute('id', 'CanvasVideo');
+
+        video.setAttribute('class', 'videoCanvas');
+        video.setAttribute('id', 'videoCanvas');
+        video.setAttribute('controls', '');
+        video.setAttribute('autoplay', '');
+
+        source.setAttribute('class', 'videoSource');
+        source.setAttribute('id', 'videoSource');
+        source.setAttribute('src', 'http://www.imgur.com/mClEpxu.mp4');
+        source.setAttribute('type', 'video/mp4');
+
+        video.appendChild(source);
+        videoCanvas.appendChild(video);
+        document.getElementById("popUpCanvas").appendChild(videoCanvas);
+    }
+</script>
+
+</body>
+</html>
