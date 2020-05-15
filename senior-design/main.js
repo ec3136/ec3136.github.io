@@ -144,7 +144,7 @@ $('#treble-clef').click(function(){
     $('#noteGuess').css("display","block");}
 });
 $('#python').click(function(){
-  window.location.hash = 'https://ec3136.github.io/senior-design/page2/';
+  window.location.href = 'https://ec3136.github.io/senior-design/page2/';
   return false;
 });
 
