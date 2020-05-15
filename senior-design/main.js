@@ -143,6 +143,11 @@ $('#treble-clef').click(function(){
   else {
     $('#noteGuess').css("display","block");}
 });
+$('#python').click(function(){
+  window.location.hash = 'https://ec3136.github.io/senior-design/page2/';
+  return false;
+});
+
 $('#a').click(function(){
   indicator = 1;
   console.log(indicator)
